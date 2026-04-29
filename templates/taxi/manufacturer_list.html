@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_filters %}
 {% block content %}
   <h1>
     Manufacturer List
@@ -7,6 +7,14 @@
       Create
     </a>
   </h1>
+
+  <form class="form-inline" method="get" action="">
+    {% csrf_token %}
+    {{ search_form|crispy }}
+    <input class="btn btn-primary" type="submit" value="🔎">
+  </form>
+
+  <br>
 
   {% if manufacturer_list %}
     <table class="table">
